@@ -19,7 +19,6 @@ export default function SignUp () {
           }
       }).then(jsonRes => setBlog(jsonRes))
   },[])
-  console.log(">",blog)
 
 
   const postFunction = () => {
@@ -36,7 +35,7 @@ if(first && last && e_mail && pass) {
       })
       .then((response) => {
         console.log(">>",response);
-        navi("/sign-in")
+        navi("/")
       }, (error) => {
         console.log("<<",error);
       });
@@ -103,9 +102,9 @@ if(first && last && e_mail && pass) {
           </div>
         </div>
         <p className="forgot-password text-right black">
-          Already have an Account <Link to={'/'}><a>
+          Already have an Account <Link to={'/'} style={{color:"blue"}}>
              login
-          </a>
+          
         </Link>
         </p>
           

@@ -18,7 +18,7 @@ exports.create = function(req, res) {
 
     //handles null error 
    if(1!=1){
-        res.status(400).send({ error:true, message: 'Please provide all required field' });
+        return res.status(400).send({ error:true, message: 'Please provide all required field' });
     }else{
         Blog.create(new_blog, function(err, blog) {
             if (err)

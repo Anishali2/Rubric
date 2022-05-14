@@ -4,10 +4,10 @@ const User = require('../models/user.model');
 
 exports.findAll = function(req, res) {
     User.findAll(function(err, user) {
-    console.log('controller')
+    // console.log('controller')
     if (err)
     res.send(err);
-    console.log('res', user);
+    // console.log('res', user);
     res.send(user);
   });
 };
@@ -18,7 +18,7 @@ exports.create = function(req, res) {
 
     //handles null error 
    if(1!=1){
-        res.status(400).send({ error:true, message: 'Please provide all required field' });
+        return res.status(400).send({ error:true, message: 'Please provide all required field' });
     }else{
         User.create(new_user, function(err, user) {
             if (err)

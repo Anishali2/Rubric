@@ -12,11 +12,11 @@ var User = function(user){
 User.create = function (newEmp, result) {    
     dbConn.query("INSERT INTO users set ?", newEmp, function (err, res) {
         if(err) {
-            console.log("error: ", err);
+            // console.log("error: ", err);
             result(err, null);
         }
         else{
-            console.log(res.insertId);
+            // console.log(res.insertId);
             result(null, res.insertId);
         }
     });           
@@ -24,7 +24,7 @@ User.create = function (newEmp, result) {
 User.findById = function (id, result) {
     dbConn.query("Select * from users where id = ? ", id, function (err, res) {             
         if(err) {
-            console.log("error: ", err);
+            // console.log("error: ", err);
             result(err, null);
         }
         else{
@@ -35,11 +35,11 @@ User.findById = function (id, result) {
 User.findAll = function (result) {
     dbConn.query("Select * from users", function (err, res) {
         if(err) {
-            console.log("error: ", err);
+            // console.log("error: ", err);
             result(null, err);
         }
         else{
-            console.log('users : ', res);  
+            // console.log('users : ', res);  
             result(null, res);
         }
     });   
@@ -47,7 +47,7 @@ User.findAll = function (result) {
 User.update = function(id, user, result){
   dbConn.query("UPDATE users SET first_name=?,last_name=?,email=?,password=?, WHERE id = ?", [user.first_name,user.last_name,user.email,user.password, id], function (err, res) {
         if(err) {
-            console.log("error: ", err);
+            // console.log("error: ", err);
             result(null, err);
         }else{   
             result(null, res);
@@ -57,7 +57,7 @@ User.update = function(id, user, result){
 User.delete = function(id, result){
      dbConn.query("DELETE FROM users WHERE id = ?", [id], function (err, res) {
         if(err) {
-            console.log("error: ", err);
+            // console.log("error: ", err);
             result(null, err);
         }
         else{

@@ -13,6 +13,7 @@ const navi = useNavigate()
     const logout = () => {
       localStorage.removeItem("active"); 
       navi("/")
+      window.location.reload()
     }
   return (
     <Navbar className='ava_header' expand="lg" >
@@ -30,7 +31,7 @@ const navi = useNavigate()
           My Blogs
         </Nav.Link>
 
-      <Nav.Link style={{ display: 'initial'}} href="#">
+      <Nav.Link style={{ display: 'initial'}} >
       <Button variant="outline-dark" onClick={() => logout()}>Logout</Button></Nav.Link>
       
      </Navbar.Collapse>

@@ -2,7 +2,6 @@ const express    = require("express")
 const multer     = require('multer');
 const bodyParser = require('body-parser');
 const app        = express()
-const port       = process.env.PORT || 5000;
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -21,6 +20,6 @@ app.use ('/api/v1/blogs', require('./src/routes/blog.routes'))
 
 
 
-app.listen(port,function () {
+app.listen(5000,function () {
     console.log("express server working on 5000")
 })

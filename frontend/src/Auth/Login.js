@@ -2,62 +2,57 @@ import React,{useState,useEffect} from 'react'
 import { Card } from 'react-bootstrap'
 import './auth.css'
 import { Link ,useNavigate} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 export default function Login () {
     
   const [data,setData] = useState([])
-  const [blog,setBlog] = useState([])
   const [email,setEmail] = useState()
   const [password,setPassword] = useState()
+  const [name,setName] = useState()
+  const [func,setFunc] = useState()
   const navigate = useNavigate();  
-  useEffect(() => {
-      fetch("/api/v1/users").then(res => {
-          if(res.ok) {
-              return res.json()
-          }
-      }).then(jsonRes => setData(jsonRes))
-  },[])
-  if(data || data != []) {
+ 
+useEffect(() => {
     fetch("/api/v1/users").then(res => {
-      if(res.ok) {
-          return res.json()
-      }
-  }).then(jsonRes => setData(jsonRes))
-  }
-  // console.log(">",data)
+        if(res.ok) {
+            return res.json()
+        }
+    }).then(jsonRes => setData(jsonRes))
+},[])
+
+
   function userLogin() {
-    if (data.filter(e => e.email === email).length > 0 &&
-       data.filter(e => e.password === password).length > 0
-       ) { 
-        localStorage.setItem("active",JSON.stringify({ mail:email, pass:password }));
-        navigate.push('/')
-        console.log("email exist")
-  } else {
-    console.log("email not exist")
-  }
+    const result = data.map(permission => {
+      var permissionData = data.find(element => element.email === email);
+      setName(permissionData)
+    });
+    
+    setFunc(1)
+    
 }
-    // setError("")
-    // if (newStorage.user.filter(e => e.email === initialValues.email).length > 0 &&
-    //   newStorage.user.filter(e => e.password === initialValues.password).length > 0) {
-    //   console.log('working if')
-    //   setError("")
-    //   navigate("/load",{state: { id: 7, color: 'green' }})
-    //   // localStorage.setItem("active", JSON.stringify({ user: [1] }));
-    //   localStorage.setItem("active",JSON.stringify({ ...user, user:1 }));
+ const newF = () => {
+     
+  if (data.filter(e => e.email === email).length > 0 &&
+  data.filter(e => e.password === password).length > 0 
+  ) { 
+        localStorage.setItem("active",JSON.stringify({name:name.first_name + "ali", mail:email, pass:password }));
+        window.location.reload()
+      } else {
+        console.log("email not exist")
+      }
+ }
+ if(func == 1) {
+  newF()
+  setFunc(2)
 
-
-    // } else {
-    //   console.log('working Else')
-    //   setError("Email or Password is invalid")
-
-    // }
-  
+ }
   
     return (
       <form>
 <Card className='center'>
         <Card.Body>
-          <Card.Title >Sign In</Card.Title>
+          <Card.Title>Sign In</Card.Title>
 
         <div className="mb-3">
           <label>Email address</label>
@@ -88,9 +83,9 @@ export default function Login () {
         </div>
         
         <p className="forgot-password text-right black">
-          Dosn't have an Account <Link to={'/sign-up'}><a>
+          Dosn't have an Account <Link to={'/sign-up'} style={{color:"blue"}}>
              Create
-          </a>
+          
         </Link>
         </p>
     

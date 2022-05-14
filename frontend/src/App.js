@@ -4,10 +4,10 @@ import CreateBlog from './Home/CreateBlog';
 import EditBlog from './Home/EditBlog';
 import Home from './Home/Home';
 import MyBlogs from './Home/MyBlogs';
-import Main from './Auth/Main';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Login from './Auth/Login';
 import SignUp from './Auth/Signup';
+import Blog from './Home/Blog';
 
 function App() {
   const [data, setData] = useState()
@@ -20,7 +20,6 @@ function App() {
   }, [store])
   
   
-  console.log(data)
   return (
 <Router>
       <Routes>
@@ -30,6 +29,7 @@ function App() {
         <Route exact path="/createblog" element={<CreateBlog/>}/>
         <Route exact path="/editblog/:id" element={<EditBlog/>}/>
         <Route exact path="/myblog" element={<MyBlogs/>}/>
+        <Route exact path="/blog/:id" element={<Blog/>}/>
         </>
         :
         <>
